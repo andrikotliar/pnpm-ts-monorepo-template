@@ -1,0 +1,4 @@
+*.md
+*.yml
+*.toml
+client/src/routeTree.gen.ts
