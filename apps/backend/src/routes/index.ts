@@ -1,9 +1,15 @@
 import { Router } from 'express';
 import { healthcheckRouter } from '~/routes/healthcheck.router';
+import { userExampleRouter } from '~/routes/user-example.router';
+
+const routers = [healthcheckRouter, userExampleRouter];
 
 export const registerRoutes = () => {
-  const router = Router();
-  router.use('/healthcheck', healthcheckRouter);
+  const rootRouter = Router();
 
-  return router;
+  for (const router of routers) {
+    rootRouter.use(router.path, router.router);
+  }
+
+  return rootRouter;
 };

@@ -1,9 +1,11 @@
-import { Router } from 'express';
+import { createRouter, defineRoute } from '~/shared';
 
-const healthcheckRouter = Router();
-
-healthcheckRouter.get('/', (_req, res) => {
-  res.status(200).send({ status: 'ok' });
-});
-
-export { healthcheckRouter };
+export const healthcheckRouter = createRouter('/healthcheck', [
+  defineRoute({
+    path: '/',
+    method: 'get',
+    handler({ response }) {
+      response.status(200).send({ status: 'ok' });
+    },
+  }),
+]);
